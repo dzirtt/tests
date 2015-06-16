@@ -56,6 +56,8 @@ public class base64decode {
 		} catch (IOException e) {
 			ShowErrorAndExit(e.getMessage());
 		}
+		
+		System.out.print("DONE");
 
 	}
 
@@ -78,8 +80,7 @@ public class base64decode {
 				if (REMOVE) {
 					tmp = removeNonBase64Chars(tmp, nonBase);
 				} else {
-					ShowErrorAndExit("contains non Base64 characters\n Base64 chars is:"
-							+ Arrays.toString(base64Chars));
+					ShowErrorAndExit("contains non Base64 characters\n Base64 chars is:" + Arrays.toString(base64Chars));
 				}
 			}
 			tmp = Base64.getDecoder().decode(tmp);
@@ -90,7 +91,7 @@ public class base64decode {
 		outStream.write(tmp);
 		outStream.flush();
 		outStream.close();
-
+		
 	}
 
 	private static byte[] removeNonBase64Chars(byte[] from, byte[] what) {
