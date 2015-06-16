@@ -1,0 +1,9 @@
+base64converter is use for convert base64->text/text->base64
+
+keys:
+-in <path to file>
+-out <path to file>
+-r -remove <remove non base64 characters>
+Actions(use only one)
+-d decode
+-e encode
