@@ -1,29 +1,20 @@
 package base64;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.StandardOpenOption;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Base64;
 
-import base64.convert.decodeACTIONS;
+import base64.fileConvert;
+import base64.fileConvert.decodeACTIONS;
 
 public class base64decode {
 
-	
-	//parameters for work program
+	// parameters for work program
 	private static Path OUT;
 	private static Path IN;
 	private static decodeACTIONS ACTION;
 	private static boolean REMOVE = false;
-	
 
 	public static void main(String[] args) {
 
@@ -42,11 +33,19 @@ public class base64decode {
 			// if output file exist then delete
 			Files.deleteIfExists(OUT);
 			// read in file, decode\encode, write to out
-			convert.convert(IN,OUT,ACTION,REMOVE);
+			switch(ACTION){
+			case DECODE: 
+				fileConvert.decode(IN, OUT, REMOVE);
+				break;
+			case ENCODE:
+				fileConvert.encode(IN, OUT);
+				break;
+			}
+
 		} catch (IOException e) {
 			ShowErrorAndExit(e.getMessage());
 		}
-		
+
 		System.out.print("DONE");
 
 	}
@@ -59,7 +58,7 @@ public class base64decode {
 	 */
 	private static void parseArg(String[] args) {
 		String notRecognise = "";
-		// parse params
+		//parse params
 		for (int i = 0; i < args.length; i++) {
 			switch (args[i].replaceAll("^-", "")) {
 			case "out":
@@ -74,8 +73,7 @@ public class base64decode {
 			case "e":
 				ACTION = decodeACTIONS.ENCODE;
 				break;
-			case "remove":
-			case "r":
+			case "remove":case "r":
 				REMOVE = true;
 				break;
 			default:
