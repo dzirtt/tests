@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.HashMap;
 
 import base64.fileConvert;
 import base64.fileConvert.decodeACTIONS;
@@ -14,20 +15,18 @@ public class base64decode {
 	private static Path OUT;
 	private static Path IN;
 	private static decodeACTIONS ACTION;
-	private static boolean REMOVE = false;
-
+	private static boolean REMOVE = false;	
+	
 	public static void main(String[] args) {
 
 		// parse arg and init fields
 		parseArg(args);
 
-		if (IN == null || OUT == null) {
+		if (IN == null || OUT == null) 
 			ShowErrorAndExit("in and out param is nedeed");
-		}
-
-		if (!Files.exists(IN)) {
+		
+		if (!Files.exists(IN)) 
 			ShowErrorAndExit("in file not exist");
-		}
 
 		try {
 			// if output file exist then delete

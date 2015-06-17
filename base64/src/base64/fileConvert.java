@@ -42,8 +42,7 @@ public class fileConvert {
 		tmp = Base64.getDecoder().decode(tmp);
 		
 		writeToFile(OUT, tmp);
-		//convert(IN,OUT,decodeACTIONS.DECODE, REMOVE);
-		
+			
 	}
 	
 	public static void encode(Path IN, Path OUT) throws FileNotFoundException, IllegalArgumentException, IOException{
@@ -78,12 +77,11 @@ public class fileConvert {
 		boolean skip = false;
 
 		for (byte b_in : from) {
-			for (byte b2_ex : what) {
+			for (byte b2_ex : what) 
 				if (b_in == b2_ex) {
 					skip = true;
 					break;
 				}
-			}
 
 			if (!skip)
 				out.write(b_in);
@@ -96,14 +94,13 @@ public class fileConvert {
 
 	private static byte[] searchNonBase64Chars(byte[] arr) {
 		ArrayList<Byte> base = new ArrayList<>();
+		ByteArrayOutputStream tmp = new ByteArrayOutputStream();
 
 		for (char c : base64Chars) {
 			base.add((byte) c);
 		}
 
-		ByteArrayOutputStream tmp = new ByteArrayOutputStream();
-
-		// collect all non base54 chars
+		// collect all non base64 chars
 		for (byte b : arr) {
 			if (!base.contains(b)) {
 				tmp.write(b);
