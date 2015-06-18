@@ -1,4 +1,4 @@
-package base64;
+package base64.Impl;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
