@@ -49,12 +49,6 @@ public class base64decode {
 
 	}
 
-	/**
-	 * @param args
-	 *            cmd parameters
-	 * @param params
-	 *            array with parse params
-	 */
 	private static void parseArg(String[] args) {
 		String notRecognise = "";
 		//parse params
